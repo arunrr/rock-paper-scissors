@@ -75,3 +75,14 @@ img {
     width: 200px;
   }
 }
+
+/* Play button */
+.button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: violet;
+}
