@@ -22,6 +22,11 @@ img {
   height: 150px;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .container {
   padding: 2rem;
   margin: 0 auto;
@@ -29,6 +34,9 @@ img {
   width: 100%;
 }
 
+main {
+  position: relative;
+}
 /* player section */
 
 .player-section {
@@ -85,4 +93,16 @@ img {
   font-weight: 700;
   text-transform: uppercase;
   background-color: violet;
+}
+
+/* Footer section */
+footer {
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  color: white;
+  padding: 2rem;
 }
