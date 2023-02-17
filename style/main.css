@@ -31,6 +31,10 @@ img {
 
 /* player section */
 
+.player-section {
+  display: none;
+}
+
 .player-options {
   display: flex;
   max-width: 700px;
@@ -53,5 +57,21 @@ img {
 @media (min-width: 600px) {
   .player-options {
     flex-direction: row;
+  }
+}
+
+/* computer section */
+
+.computer-section {
+  display: none;
+}
+
+.computer-options {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .computer-options img {
+    width: 200px;
   }
 }
