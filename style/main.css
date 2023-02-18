@@ -151,7 +151,24 @@ li:focus {
   }
 }
 
-/* Play button */
+/* Play section */
+
+.play-section {
+  margin: 5rem auto;
+}
+
+.play-section input {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 300px;
+  width: 100%;
+}
+
+.play-section input::placeholder {
+  color: var(--clr-grey);
+}
+
 .button {
   border: none;
   transform: translateY(-600%);
@@ -162,10 +179,16 @@ li:focus {
   font-weight: 700;
   text-transform: uppercase;
   background-color: var(--clr-accent);
-  margin-top: 10rem;
   color: var(--clr-white);
+  margin-top: 2rem;
   box-shadow: 0 0 20px var(--clr-black);
   /* display: none; */
+}
+
+@media (min-width: 600px) {
+  .button {
+    padding: 1rem 3rem;
+  }
 }
 
 /* Footer section */
