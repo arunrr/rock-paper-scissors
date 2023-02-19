@@ -10,6 +10,15 @@ const computerSection = document.querySelector(".computer-section");
 const computerOptions = computerSection.querySelectorAll("li");
 const nextRoundButton = computerSection.querySelector("#next-round-btn");
 const replayButton = computerSection.querySelector("#replay-btn");
+const scoreSection = computerSection.querySelector(".score-section");
+const playerScoreSection = scoreSection.querySelector(".player-score");
+const playerScoreDisplay = playerScoreSection.querySelector("p");
+const computerScoreSection = scoreSection.querySelector(".computer-score");
+const computerScoreDisplay = computerScoreSection.querySelector("p");
+const totalScoreSection = computerSection.querySelector(".total-score-section");
+const totalScoreText = totalScoreSection.querySelector("h3");
+
+const gameResult = document.createElement("h3");
 
 let numberOfRounds = 0;
 let playerSelectedOption = "";
@@ -68,10 +77,25 @@ function getComputerChoice() {
   computerSelectedOption = choices[chosenIndex];
 
   displayComputerChoice(computerSelectedOption);
+
   // changeComponents()
   playRound();
-  // debugger;
+
   numberOfRounds -= 1;
+  // debugger;
+  if (numberOfRounds !== 0) {
+    nextRoundButton.style.display = "inline";
+    replayButton.style.display = "none";
+  } else {
+    scoreSection.style.display = "none";
+    totalScoreSection.classList.add("show");
+    nextRoundButton.style.display = "none";
+    replayButton.style.display = "inline";
+    console.log(playerScore, computerScore);
+    printResult();
+  }
+
+  // debugger;
 }
 
 function displayComputerChoice(computerSelectedOption) {
@@ -94,15 +118,11 @@ function getPlayerChoice() {
   playerSelectedOption = choice;
   console.log(choice);
 
-  if (numberOfRounds !== 0) {
-    nextRoundButton.style.display = "inline";
-    replayButton.style.display = "none";
-  } else {
-    nextRoundButton.style.display = "none";
-    replayButton.style.display = "inline";
-  }
   changeComponents(playerSection, computerSection);
+
   getComputerChoice();
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
 }
 
 function changeComponents(firstComponent, secondComponent) {
@@ -149,22 +169,24 @@ nextRoundButton.addEventListener("click", function (e) {
 
 replayButton.addEventListener("click", function (e) {
   changeComponents(computerSection, playSection);
+  playerScore = 0;
+  computerScore = 0;
 });
 
-// // This function prints total scores
-// function printScore(playerScore, computerScore) {
-//   console.log("---------------------------------------------");
-//   console.log(` Score - Player: ${playerScore} | Computer: ${computerScore}`);
-//   console.log("---------------------------------------------");
-
-//   if (playerScore > computerScore) {
-//     console.log("Player Wins ");
-//   } else if (playerScore < computerScore) {
-//     console.log("Computer wins");
-//   } else {
-//     console.log("It's a tie");
-//   }
-// }
+// This function prints total scores
+function printResult() {
+  if (playerScore > computerScore) {
+    gameResult.textContent = "Player Wins !!!";
+    gameResult.style.color = "var(--clr-green)";
+  } else if (playerScore < computerScore) {
+    gameResult.textContent = "Computer Wins !!!";
+    gameResult.style.color = "var(--clr-accent)";
+  } else {
+    gameResult.textContent = "!!! It's a Tie !!!";
+    gameResult.style.color = "var(--clr-grey)";
+  }
+  totalScoreSection.appendChild(gameResult);
+}
 
 // // Start the game
 // game();
