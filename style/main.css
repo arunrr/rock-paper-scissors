@@ -172,6 +172,26 @@ li:focus {
   margin-top: 1.5rem;
 }
 
+.total-score-section {
+  display: none;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.total-score-section h3 {
+  font-size: 2rem;
+}
+
+@media (min-width: 600px) {
+  .total-score-section {
+    margin-top: 5rem;
+  }
+
+  .total-score-section h3 {
+    font-size: 4rem;
+  }
+}
+
 /* Play section */
 
 .play-section {
