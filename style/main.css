@@ -154,6 +154,24 @@ li:focus {
   }
 }
 
+/* Score section */
+.score-section {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.score-section > * {
+  flex: 1;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.score-section p {
+  margin-top: 1.5rem;
+}
+
 /* Play section */
 
 .play-section {
