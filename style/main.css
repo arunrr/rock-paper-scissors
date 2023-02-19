@@ -82,8 +82,9 @@ li:focus {
 
 .player-section {
   display: none;
-  transform: translateY(-150%);
-  transition: transform 0.5s ease-in;
+  /* display: none;
+  transform: translateY(-700%);
+  transition: transform 5s; */
 }
 
 .player-section p {
@@ -127,8 +128,6 @@ li:focus {
 /* computer section */
 
 .computer-section {
-  transform: translateX(-150%);
-  transition: transform 0.5s ease-in;
   margin-top: 5rem;
   display: none;
 }
@@ -139,6 +138,10 @@ li:focus {
   max-width: 300px;
   margin: 0 auto;
   padding: 1rem 0;
+}
+
+.computer-options li {
+  display: none;
 }
 
 @media (min-width: 600px) {
@@ -154,9 +157,10 @@ li:focus {
 /* Play section */
 
 .play-section {
+  display: none;
   margin: 5rem auto;
-  transform: translateY(-600%);
-  transition: transform 0.6s ease-in;
+  /* transform: translateY(-600%);
+  transition: transform 0.8s; */
 }
 
 .play-section input {
@@ -189,8 +193,18 @@ li:focus {
   background-color: var(--clr-accent);
   color: var(--clr-white);
   margin-top: 2rem;
-  box-shadow: 0 0 20px var(--clr-black);
+  box-shadow: 0 0 10px var(--clr-grey);
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
   /* display: none; */
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--clr-green);
+  box-shadow: 0 0 20px var(--clr-grey);
+  color: var(--clr-black);
 }
 
 @media (min-width: 600px) {
@@ -209,4 +223,20 @@ footer {
 
 footer a {
   font-weight: 700;
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateY(-500%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.show {
+  animation: slidein 0.5s linear;
+  display: block;
 }

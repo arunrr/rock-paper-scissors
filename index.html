@@ -15,23 +15,47 @@
           <h2>Player Option</h2>
           <p>Please click on any one of the options provided below</p>
           <ul class="player-options">
-            <li><img src="./assets/rock.svg" alt="Rock" /> <span>Rock</span></li>
-            <li><img src="./assets/paper.svg" alt="Paper"/><span>Paper</span></li>
-            <li><img src="./assets/scissor.svg" alt="Scissor"/><span>Scissor</span></li>
+            <li data-option="rock">
+              <img src="./assets/rock.svg" alt="Rock" /> <span>Rock</span>
+            </li>
+            <li data-option="paper">
+              <img src="./assets/paper.svg" alt="Paper" /><span>Paper</span>
+            </li>
+            <li data-option="scissor">
+              <img src="./assets/scissor.svg" alt="Scissor" /><span
+                >Scissor</span
+              >
+            </li>
           </ul>
         </section>
         <section class="computer-section" id="computer-section">
           <h2>Computer Option</h2>
           <ul class="computer-options">
-            <!-- <img src="./assets/rock.svg" alt="Rock" /> -->
-            <!-- <img src="./assets/paper.svg" alt="Paper" /> -->
-            <li><img src="./assets/scissor.svg" alt="Scissor" /><span>Scissor</span></li>
-          </div>
+            <li data-option="rock">
+              <img src="./assets/rock.svg" alt="Rock" /><span>Rock</span>
+            </li>
+            <li data-option="paper">
+              <img src="./assets/paper.svg" alt="Paper" /><span>Paper</span>
+            </li>
+            <li data-option="scissor">
+              <img src="./assets/scissor.svg" alt="Scissor" /><span
+                >Scissor</span
+              >
+            </li>
+          </ul>
+
+          <button class="button" id="next-round-btn">next round</button>
+          <button class="button" id="replay-btn">replay</button>
         </section>
         <section class="play-section container">
-          <input type="number" id="play-round" placeholder="Enter Number of rounds to play...">
-        <button class="button" id="play-btn">Play</button>
-
+          <input
+            type="number"
+            min="0"
+            max="10"
+            id="play-round"
+            placeholder="Enter play round Max 20 ..."
+          />
+          <button class="button" id="play-btn">Play</button>
         </section>
       </div>
     </main>
