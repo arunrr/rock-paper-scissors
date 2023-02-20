@@ -14,7 +14,7 @@
   --font-large: 3rem;
   --font-medium: 2rem;
   --font-small: 1.5rem;
-  --font-xs: 0.8rem;
+  --font-xs: 0.95rem;
 }
 
 body {
@@ -82,9 +82,6 @@ li:focus {
 
 .player-section {
   display: none;
-  /* display: none;
-  transform: translateY(-700%);
-  transition: transform 5s; */
 }
 
 .player-section p {
@@ -133,8 +130,6 @@ li:focus {
 }
 
 .computer-options {
-  /* display: none; */
-
   max-width: 300px;
   margin: 0 auto;
   padding: 1rem 0;
@@ -155,6 +150,7 @@ li:focus {
 }
 
 /* Score section */
+
 .score-section {
   display: flex;
   margin: 0 auto;
@@ -197,8 +193,6 @@ li:focus {
 .play-section {
   display: none;
   margin: 5rem auto;
-  /* transform: translateY(-600%);
-  transition: transform 0.8s; */
 }
 
 .play-section input {
@@ -222,7 +216,6 @@ li:focus {
 
 .button {
   border: none;
-
   border-radius: 0.5rem;
   padding: 1rem 5rem;
   font-size: 2rem;
@@ -235,7 +228,6 @@ li:focus {
   transition: 0.3s;
   outline: none;
   cursor: pointer;
-  /* display: none; */
 }
 
 .button:hover,
@@ -252,6 +244,7 @@ li:focus {
 }
 
 /* Footer section */
+
 footer {
   font-size: var(--font-xs);
   letter-spacing: 2px;
@@ -262,6 +255,8 @@ footer {
 footer a {
   font-weight: 700;
 }
+
+/* animation */
 
 @keyframes slidein {
   0% {
