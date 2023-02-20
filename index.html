@@ -5,38 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/main.css" />
-    <title>Rock Paper Scissor</title>
+    <title>Rock Paper Scissor | Odin Project</title>
   </head>
   <body>
     <main>
       <div class="container">
         <h1 class="title">R.P.S</h1>
-        <section class="player-section">
+        <section class="player-section" id="player-section">
           <h2>Player Option</h2>
           <p>Please click on any one of the options provided below</p>
           <ul class="player-options">
-            <li><img src="./assets/rock.svg" alt="Rock" /></li>
-            <li><img src="./assets/paper.svg" alt="Paper" /></li>
-            <li><img src="./assets/scissor.svg" alt="Scissor" /></li>
+            <li data-option="rock">
+              <img src="./assets/rock.svg" alt="Rock" /> <span>Rock</span>
+            </li>
+            <li data-option="paper">
+              <img src="./assets/paper.svg" alt="Paper" /><span>Paper</span>
+            </li>
+            <li data-option="scissor">
+              <img src="./assets/scissor.svg" alt="Scissor" /><span
+                >Scissor</span
+              >
+            </li>
           </ul>
         </section>
-        <section class="computer-section">
+        <section class="computer-section" id="computer-section">
           <h2>Computer Option</h2>
-          <div class="computer-options">
-            <img src="./assets/rock.svg" alt="Rock" />
-            <img src="./assets/paper.svg" alt="Paper" />
-            <img src="./assets/scissor.svg" alt="Scissor" />
+          <ul class="computer-options">
+            <li data-option="rock">
+              <img src="./assets/rock.svg" alt="Rock" /><span>Rock</span>
+            </li>
+            <li data-option="paper">
+              <img src="./assets/paper.svg" alt="Paper" /><span>Paper</span>
+            </li>
+            <li data-option="scissor">
+              <img src="./assets/scissor.svg" alt="Scissor" /><span
+                >Scissor</span
+              >
+            </li>
+          </ul>
+
+          <button class="button" id="next-round-btn">next round</button>
+          <button class="button" id="replay-btn">replay</button>
+          <div class="score-section">
+            <div class="player-score">
+              <h3>Player Score</h3>
+              <p>0</p>
+            </div>
+            <div class="computer-score">
+              <h3>Computer Score</h3>
+              <p>0</p>
+            </div>
+          </div>
+          <div class="total-score-section">
+            
+            </div>
           </div>
         </section>
-        <button class="button">Play</button>
+        <section class="play-section container">
+          <input
+            type="number"
+            min="0"
+            max="10"
+            id="play-round"
+            placeholder="Enter play round Max 20 ..."
+          />
+          <button class="button" id="play-btn">Play</button>
+        </section>
       </div>
     </main>
     <footer>
       <div class="container">
-        <p>Developed by <a href="#">Arun.R.R.</a></p>
+        <p>Developed by <a href="https://github.com/arunrr">Arun.R.R.</a></p>
       </div>
     </footer>
 
-    <!-- <script src="./js/main.js" defer></script> -->
+    <script src="./js/main.js" defer></script>
   </body>
 </html>

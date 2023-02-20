@@ -4,9 +4,30 @@
   box-sizing: border-box;
 }
 
+:root {
+  --clr-black: #2d3047;
+  --clr-grey: #6e8898;
+  --clr-white: #f5f3f5;
+  --clr-accent: #d44d5c;
+  --clr-green: #5efc6d;
+
+  --font-large: 3rem;
+  --font-medium: 2rem;
+  --font-small: 1.5rem;
+  --font-xs: 0.95rem;
+}
+
 body {
   text-align: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+}
+
+h1 {
+  font-size: var(--font-large);
 }
 
 h1,
@@ -25,7 +46,29 @@ img {
 
 a {
   text-decoration: none;
-  color: white;
+  color: var(--clr-white);
+}
+
+li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10%;
+  border: 2px solid var(--clr-green);
+  padding: 1rem;
+  background-color: var(--clr-grey);
+  transition: all 0.4s linear;
+}
+
+li:hover,
+li:focus {
+  background-color: var(--clr-black);
+  border-color: var(--clr-accent);
+  transform: scale(1.1);
 }
 
 .container {
@@ -35,47 +78,64 @@ a {
   width: 100%;
 }
 
-main {
-}
-
 /* player section */
 
 .player-section {
-  /* display: none; */
+  display: none;
+}
+
+.player-section p {
+  margin-bottom: 1.5rem;
 }
 
 .player-options {
   display: flex;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
   gap: 2rem;
 }
 
-.player-options li {
-  flex: 1;
-  width: 60%;
-  border-radius: 10%;
-  border: 2px solid red;
-  padding: 1rem;
-}
-
 @media (min-width: 600px) {
+  .player-section {
+    margin-top: 5rem;
+  }
+
+  .player-section h2 {
+    font-size: var(--font-medium);
+  }
+
+  .player-section p {
+    font-size: var(--font-small);
+  }
+
   .player-options {
+    margin-top: 5rem;
     flex-direction: row;
+  }
+
+  .player-options li {
+    flex-direction: column;
   }
 }
 
 /* computer section */
 
 .computer-section {
+  margin-top: 5rem;
   display: none;
 }
 
 .computer-options {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.computer-options li {
   display: none;
 }
 
@@ -83,31 +143,133 @@ main {
   .computer-options img {
     width: 200px;
   }
+
+  .computer-options li {
+    flex-direction: column;
+  }
 }
 
-/* Play button */
+/* Score section */
+
+.score-section {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.score-section > * {
+  flex: 1;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.score-section p {
+  margin-top: 1.5rem;
+}
+
+.total-score-section {
+  display: none;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.total-score-section h3 {
+  font-size: 2rem;
+}
+
+@media (min-width: 600px) {
+  .total-score-section {
+    margin-top: 5rem;
+  }
+
+  .total-score-section h3 {
+    font-size: 4rem;
+  }
+}
+
+/* Play section */
+
+.play-section {
+  display: none;
+  margin: 5rem auto;
+}
+
+.play-section input {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 300px;
+  width: 100%;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.play-section input:focus {
+  border-color: var(--clr-green);
+}
+
+.play-section input::placeholder {
+  color: var(--clr-grey);
+}
+
 .button {
   border: none;
   border-radius: 0.5rem;
-  padding: 1rem 2rem;
+  padding: 1rem 5rem;
   font-size: 2rem;
   font-weight: 700;
   text-transform: uppercase;
-  background-color: violet;
-  display: none;
+  background-color: var(--clr-accent);
+  color: var(--clr-white);
+  margin-top: 2rem;
+  box-shadow: 0 0 10px var(--clr-grey);
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--clr-green);
+  box-shadow: 0 0 20px var(--clr-grey);
+  color: var(--clr-black);
+}
+
+@media (min-width: 600px) {
+  .button {
+    padding: 1rem 3rem;
+  }
 }
 
 /* Footer section */
+
 footer {
-  font-size: 0.8rem;
+  font-size: var(--font-xs);
   letter-spacing: 2px;
-  width: 100%;
-  position: sticky;
-  bottom: 0;
-  background-color: black;
-  color: white;
+  margin-top: auto;
+  padding: 1rem 0;
 }
 
 footer a {
   font-weight: 700;
+}
+
+/* animation */
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateY(-500%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.show {
+  animation: slidein 0.5s linear;
+  display: block;
 }
