@@ -20,27 +20,55 @@ const totalScoreText = totalScoreSection.querySelector("h3");
 
 const gameResult = document.createElement("h3");
 
+const options = ["rock", "paper", "scissor"];
+
+// Values to keep track
 let numberOfRounds = 0;
 let playerSelectedOption = "";
 let computerSelectedOption = "";
 let playerScore = 0;
 let computerScore = 0;
 
-playSection.classList.add("show");
-
-function isInputValid() {
-  const reg = new RegExp("[0-9]");
-
-  if (!reg.test(this.value)) {
-    this.value = "";
-  }
-
-  if (this.value > 20) {
-    this.value = 0;
-  }
+// Utility functions
+function changeComponents(oldComponent, newComponent) {
+  oldComponent.classList.remove("show");
+  newComponent.classList.add("show");
 }
 
-// This function plays one round of the game
+function resetScore() {
+  playerScore = 0;
+  computerScore = 0;
+}
+
+function removeFinalResult() {
+  totalScoreSection.classList.remove("show");
+  scoreSection.style.display = "flex";
+}
+
+function toggleButtons(displayNextBtn, displayReplayBtn) {
+  nextRoundButton.style.display = displayNextBtn;
+  replayButton.style.display = displayReplayBtn;
+}
+
+function toggleScoreSection(totalScoreDisplay, scoreSectionDisplay) {
+  if (totalScoreDisplay) {
+    totalScoreSection.classList.add("show");
+  } else {
+    totalScoreSection.classList.remove("show");
+  }
+  scoreSection.style.display = scoreSectionDisplay;
+}
+
+// Display image of computer generated choice
+function displayComputerChoice(computerSelectedOption) {
+  computerOptions.forEach(function (computerOption) {
+    if (computerOption.dataset.option === computerSelectedOption) {
+      computerOption.style.display = "block";
+    }
+  });
+}
+
+// This function plays one round of the game and updating score
 function playRound() {
   if (playerSelectedOption === computerSelectedOption) {
     console.log(
@@ -64,116 +92,7 @@ function playRound() {
   }
 }
 
-// This function will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’
-function getComputerChoice() {
-  computerOptions.forEach(function (computerOption) {
-    if (computerOption.dataset.option === computerSelectedOption) {
-      computerOption.style.display = "none";
-    }
-  });
-  const choices = ["rock", "paper", "scissor"];
-  const chosenIndex = Math.abs(Math.floor(Math.random() * choices.length));
-
-  computerSelectedOption = choices[chosenIndex];
-
-  displayComputerChoice(computerSelectedOption);
-
-  // changeComponents()
-  playRound();
-
-  numberOfRounds -= 1;
-  // debugger;
-  if (numberOfRounds !== 0) {
-    nextRoundButton.style.display = "inline";
-    replayButton.style.display = "none";
-  } else {
-    scoreSection.style.display = "none";
-    totalScoreSection.classList.add("show");
-    nextRoundButton.style.display = "none";
-    replayButton.style.display = "inline";
-    console.log(playerScore, computerScore);
-    printResult();
-  }
-
-  // debugger;
-}
-
-function displayComputerChoice(computerSelectedOption) {
-  computerOptions.forEach(function (computerOption) {
-    if (computerOption.dataset.option === computerSelectedOption) {
-      computerOption.style.display = "block";
-    }
-  });
-}
-
-// This function will get players's choice
-function getPlayerChoice() {
-  // debugger;
-  const options = ["rock", "paper", "scissor"];
-  const choice = this.dataset.option || "";
-
-  if (!choice || !options.includes(choice)) {
-    return null;
-  }
-  playerSelectedOption = choice;
-  console.log(choice);
-
-  changeComponents(playerSection, computerSection);
-
-  getComputerChoice();
-  playerScoreDisplay.textContent = playerScore;
-  computerScoreDisplay.textContent = computerScore;
-}
-
-function changeComponents(firstComponent, secondComponent) {
-  firstComponent.classList.remove("show");
-  secondComponent.classList.add("show");
-}
-
-function getRound() {
-  if (!numberOfRounds) {
-    console.log("No rounds to play");
-    return;
-  }
-  console.log(numberOfRounds);
-  changeComponents(playSection, playerSection);
-}
-
-function game() {
-  // getPlayerChoice()
-  // for (let i = 1; i <= numberOfRounds; i++) {
-  // [playerScore, computerScore] = playRound(
-  //   playerSelection,
-  //   computerSelection,
-  //   playerScore,
-  //   computerScore
-  // );
-  // }
-  // printScore(playerScore, computerScore);
-  // }
-}
-
-playerOptionList.forEach(function (playerOption) {
-  playerOption.addEventListener("click", getPlayerChoice);
-});
-playInput.addEventListener("keyup", isInputValid);
-
-playButton.addEventListener("click", function (e) {
-  numberOfRounds = parseInt(playInput.value);
-  getRound();
-});
-
-nextRoundButton.addEventListener("click", function (e) {
-  changeComponents(computerSection, playerSection);
-});
-
-replayButton.addEventListener("click", function (e) {
-  changeComponents(computerSection, playSection);
-  playerScore = 0;
-  computerScore = 0;
-});
-
-// This function prints total scores
+// This function prints final game result
 function printResult() {
   if (playerScore > computerScore) {
     gameResult.textContent = "Player Wins !!!";
@@ -185,8 +104,98 @@ function printResult() {
     gameResult.textContent = "!!! It's a Tie !!!";
     gameResult.style.color = "var(--clr-grey)";
   }
+
+  if (totalScoreSection.lastChild) {
+    totalScoreSection.removeChild(totalScoreSection.lastChild);
+  }
   totalScoreSection.appendChild(gameResult);
 }
 
-// // Start the game
-// game();
+// Get number of rounds section
+playSection.classList.add("show");
+
+function isInputValid() {
+  const reg = new RegExp("[0-9]");
+
+  if (!reg.test(this.value)) {
+    this.value = "";
+  }
+
+  if (this.value > 20) {
+    this.value = 0;
+  }
+}
+
+// Check if round entered is valid
+function checkRound() {
+  if (!numberOfRounds) {
+    console.log("No rounds to play");
+    return;
+  }
+  changeComponents(playSection, playerSection);
+}
+
+// This function will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’
+function getComputerChoice() {
+  // reset previous computer selected image options
+  computerOptions.forEach(function (computerOption) {
+    if (computerOption.dataset.option === computerSelectedOption) {
+      computerOption.style.display = "none";
+    }
+  });
+  const chosenIndex = Math.abs(Math.floor(Math.random() * options.length));
+
+  computerSelectedOption = options[chosenIndex];
+
+  displayComputerChoice(computerSelectedOption);
+
+  playRound();
+
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
+
+  numberOfRounds -= 1;
+  if (numberOfRounds !== 0) {
+    toggleButtons("inline", "none");
+  } else {
+    toggleScoreSection(true, "none");
+    toggleButtons("none", "inline");
+    printResult();
+  }
+}
+
+// This function will get players's choice
+function getPlayerChoice() {
+  const choice = this.dataset.option || "";
+
+  if (!choice || !options.includes(choice)) {
+    return null;
+  }
+  playerSelectedOption = choice;
+
+  changeComponents(playerSection, computerSection);
+
+  getComputerChoice();
+}
+
+playerOptionList.forEach(function (playerOption) {
+  playerOption.addEventListener("click", getPlayerChoice);
+});
+
+playInput.addEventListener("keyup", isInputValid);
+
+playButton.addEventListener("click", function (e) {
+  numberOfRounds = parseInt(playInput.value);
+  playInput.value = "";
+  checkRound();
+});
+
+nextRoundButton.addEventListener("click", function (e) {
+  changeComponents(computerSection, playerSection);
+});
+
+replayButton.addEventListener("click", function (e) {
+  changeComponents(computerSection, playSection);
+  resetScore();
+  toggleScoreSection(false, "flex");
+});
